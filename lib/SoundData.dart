@@ -1,9 +1,9 @@
 class SoundData {
-  final int avarageDecibel;
+  final int averageDecibel;
   final int maxDecibel;
   DateTime date = DateTime.now();
 
   SoundData({
-    this.avarageDecibel, this.maxDecibel, this.date
+    this.averageDecibel, this.maxDecibel, this.date
   });
 }
