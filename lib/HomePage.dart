@@ -6,6 +6,9 @@ import 'package:flutterapp/HistoryPage.dart';
 import 'package:flutterapp/SoundClip.dart';
 import 'package:noise_meter/noise_meter.dart';
 
+import 'SoundData.dart';
+import 'SqliteUtil.dart';
+
 class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => HomePageState();
@@ -96,11 +99,17 @@ class HomePageState extends State<StatefulWidget> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {
-          if (clip.isRecoding)
-            {print(clip.finishRecoding().maxDecibel)}
-          else
-            {clip.startRecoding()}
+        onPressed: () {
+          // recording 중일경우, 녹음을 종료하고 soundData 정보를 저장한다.
+          if (clip.isRecoding) {
+            SoundData data = clip.finishRecoding();
+            print("${data.date} : ${data.averageDecibel} / ${data.maxDecibel}");
+            SqliteUtil.onAdd(data);
+          }
+          // 아닐 경우 녹음을 시작한다.
+          else {
+            clip.startRecoding();
+          }
         },
         child: clip.isRecoding ? Icon(Icons.pause) : Icon(Icons.play_arrow),
       ),

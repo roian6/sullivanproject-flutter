@@ -14,7 +14,6 @@ class HistoryPageState extends State<StatefulWidget> {
 
   @override
   void initState() {
-    // SqliteUtil.onAdd(SoundData(averageDecibel: 1, maxDecibel: 1, date: parseDate(DateTime.now())));
     SqliteUtil.getSoundData().then((value) => this.afterAction(value));
   }
 
