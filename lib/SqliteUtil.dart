@@ -35,12 +35,7 @@ class SqliteUtil {
 
     final List<Map<String, dynamic>> maps = await database.query('SoundData');
     return List.generate(maps.length, (i) {
-      return SoundData(
-        sId: maps[i]['sId'],
-        averageDecibel: maps[i]['averageDecibel'],
-        maxDecibel: maps[i]['maxDecibel'],
-        date: maps[i]['date'],
-      );
+      return SoundData.fromMap(maps[i]);
     }).reversed.toList();
   }
 }

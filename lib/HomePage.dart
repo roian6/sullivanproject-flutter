@@ -9,6 +9,8 @@ import 'package:noise_meter/noise_meter.dart';
 import 'SoundData.dart';
 import 'SqliteUtil.dart';
 
+/// 첫 페이지
+/// 소음을 측정하는 화면입니다.
 class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => HomePageState();
@@ -17,7 +19,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<StatefulWidget> {
   NoiseMeter noiseMeter = new NoiseMeter();
   StreamSubscription<NoiseReading> subscription;
-  SoundClip clip = new SoundClip();
+  SoundPager clip = new SoundPager();
 
   final int limitDecibel = 100;
   int currentDecibel = 0;
@@ -53,8 +55,8 @@ class HomePageState extends State<StatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("설리번프로젝트"), actions: <Widget>[
-        new IconButton(
+      appBar: AppBar(title: Text("소음 측정기"), actions: [
+        IconButton(
           icon: new Icon(Icons.search),
           highlightColor: Colors.white,
           onPressed: () {

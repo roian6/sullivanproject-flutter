@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutterapp/SoundData.dart';
 import 'package:intl/intl.dart';
 
-class SoundClip {
+class SoundPager {
   List<int> decibelData = List<int>();
   bool isRecoding = false;
 
